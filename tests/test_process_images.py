@@ -113,6 +113,27 @@ def test_process_folder_skips_non_supported_files_and_logs_message(
     assert output_dir.exists()
 
 
+def test_process_folder_raises_for_missing_directory(tmp_path: Path) -> None:
+    """Тест проверяет, что при отсутствующей папке выбрасывается ошибка."""
+    missing_dir = tmp_path / "missing"
+    output_dir = tmp_path / "output"
+
+    with pytest.raises(NotADirectoryError, match="Input folder does not exist"):
+        process_images.process_folder(missing_dir, output_dir)
+
+
+def test_module_entrypoint_shows_help(capsys, monkeypatch) -> None:
+    """Тест проверяет работу точки входа при запуске как модуля."""
+    monkeypatch.setattr("sys.argv", ["python", "--help"])
+
+    with pytest.raises(SystemExit) as excinfo:
+        __import__("runpy").run_module("process_images", run_name="__main__")
+
+    assert excinfo.value.code == 0
+    captured = capsys.readouterr()
+    assert "Apply blur and sharpen filters" in captured.out
+
+
 def test_cli_uses_default_output_folder(tmp_path: Path) -> None:
     """Тест проверяет что CLI использует папку 'output' по умолчанию"""
     # Подготавливаем папку с входными файлами
