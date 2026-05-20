@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "image_filter_project"
+version = "0.1.0"
+description = "Простой проект для наложения фильтров на изображения"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.0.0",
+    "Pillow>=10.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "furo>=2024.8.6",
+    "poethepoet>=0.29.0",
+    "pytest>=7.0",
+    "ruff>=0.8.0",
+    "sphinx>=8.0.0",
+]
+
+[project.scripts]
+image-filters = "process_images:main"
+
+[tool.poe.tasks]
+test = "python3 -m pytest"
+run = "python3 process_images.py --input-folder images --output-folder output"
+help = "python3 process_images.py --help"
+docs = "sphinx-build -b html docs docs/_build/html"
+lint = "ruff check ."
+format = "ruff format ."
+fix = "ruff check . --fix"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+check_untyped_defs = true
+warn_unused_configs = true
+files = ["process_images.py", "tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+extend-exclude = [
+    ".mypy_cache",
+    ".pytest_cache",
+    ".pyinstaller",
+    "__pycache__",
+    "docs/_build",
+    "processed_images",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",
+    "I",
+    "B",
+    "UP",
+    "SIM",
+    "C4",
+    "RUF",
+]
+ignore = [
+    "RUF003",  # Project comments and docs are intentionally written in Russian.
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
