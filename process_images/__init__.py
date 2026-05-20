@@ -119,5 +119,3 @@ def main(input_folder: Path, output_folder: Path) -> None:
     process_folder(input_folder, output_folder)
 
 
-if __name__ == "__main__":
-    main()

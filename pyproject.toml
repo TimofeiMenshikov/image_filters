@@ -14,8 +14,10 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    "build>=1.0.0",
     "furo>=2024.8.6",
     "poethepoet>=0.29.0",
+    "pytest-cov>=4.0.0",
     "pytest>=7.0",
     "ruff>=0.8.0",
     "sphinx>=8.0.0",
@@ -24,10 +26,13 @@ dev = [
 [project.scripts]
 image-filters = "process_images:main"
 
+[tool.setuptools]
+packages = ["process_images"]
+
 [tool.poe.tasks]
 test = "python3 -m pytest"
-run = "python3 process_images.py --input-folder images --output-folder output"
-help = "python3 process_images.py --help"
+run = "image-filters --input-folder test_images --output-folder processed_images"
+help = "image-filters --help"
 docs = "sphinx-build -b html docs docs/_build/html"
 lint = "ruff check ."
 format = "ruff format ."
@@ -44,7 +49,7 @@ python_version = "3.11"
 ignore_missing_imports = true
 check_untyped_defs = true
 warn_unused_configs = true
-files = ["process_images.py", "tests"]
+files = ["process_images", "tests"]
 
 [tool.ruff]
 target-version = "py311"

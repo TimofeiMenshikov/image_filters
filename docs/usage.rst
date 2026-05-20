@@ -17,7 +17,7 @@ Run the application directly:
 
 .. code-block:: bash
 
-   python3 process_images.py --input-folder images --output-folder output
+   python3 -m process_images --input-folder images --output-folder output
 
 Or use the installed script:
 

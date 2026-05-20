@@ -1,6 +1,9 @@
 # Image Filter Project
 
-Python-проект для наложения фильтров на изображения.
+[![CI](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml/badge.svg)](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml)
+
+Простой Python-проект для наложения фильтров на изображения.
 
 ## Описание
 
@@ -19,7 +22,7 @@ python -m pip install -r requirements.txt
 ## Использование
 
 ```bash
-python3 process_images.py --input-folder path/to/input_folder --output-folder path/to/output_folder
+python3 -m process_images --input-folder path/to/input_folder --output-folder path/to/output_folder
 ```
 
 Также после установки проекта можно запускать команду из `scripts`:
