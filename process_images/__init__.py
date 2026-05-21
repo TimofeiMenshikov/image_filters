@@ -117,5 +117,3 @@ def main(input_folder: Path, output_folder: Path) -> None:
     to ``--output-folder``. If no output folder is provided, ``output`` is used.
     """
     process_folder(input_folder, output_folder)
-
-

@@ -1,6 +1,6 @@
 # Image Filter Project
 
-[![CI](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml/badge.svg)](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml)
+[![Tests](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml)
 
 Простой Python-проект для наложения фильтров на изображения.
@@ -83,6 +83,13 @@ uv run pytest
 
 Эта команда проверена: тесты проекта успешно выполняются через `uv`.
 
+Проверить Ruff:
+
+```bash
+poe lint
+poe format-check
+```
+
 Проверить покрытие тестами:
 
 ```bash
@@ -107,6 +114,18 @@ uv run mypy process_images tests
 poe typecheck
 ```
 
+Сгенерировать документацию:
+
+```bash
+poe docs
+```
+
+Собрать пакет:
+
+```bash
+poe build
+```
+
 ## Проверка требований
 
 Проект закрывает требования к тестированию:
@@ -116,13 +135,14 @@ poe typecheck
 - аннотации типов проверяются командой `mypy process_images tests`;
 - CI запускает тесты с coverage и проверку типов.
 
-Собрать HTML-документацию Sphinx:
-
-```bash
-poe docs
-```
-
-Готовые HTML-файлы появятся в `docs/_build/html`.
+Проект закрывает требования к CI/CD:
+- GitHub Actions workflow находится в `.github/workflows/ci.yml`;
+- CI запускает `ruff check .` и `ruff format --check .`;
+- быстрые тесты запускаются командой `pytest -m "not slow"` с отчетом coverage;
+- документация генерируется командой `sphinx-build -b html docs docs/_build/html`;
+- пакет собирается командой `python -m build --no-isolation`;
+- плашка `Tests` показывает статус workflow GitHub Actions;
+- плашка `Coverage` показывает подтвержденное покрытие `100%`.
 
 ## Документация
 
