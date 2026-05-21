@@ -3,7 +3,7 @@
 [![Tests](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/TimofeiMenshikov/image_filters/actions/workflows/ci.yml)
 
-Простой Python-проект для наложения фильтров на изображения.
+Python-проект для наложения фильтров на изображения.
 
 ## Описание
 
